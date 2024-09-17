@@ -90,3 +90,8 @@ Membuat Routing URL untuk Setiap Views
 Tambahkan URL routing untuk masing-masing view di file urls.py. Buat empat endpoint terpisah, misalnya /products/xml/, /products/json/, /products/xml/<id>/, dan /products/json/<id>/, sehingga setiap view bisa diakses melalui URL yang sesuai.
 
 Jangan lupa untuk selalu migrate, setiap melakukan perubahan di models.py karena kmrn pas saya mengganti nama kelas dari Product menjadi productEntry dan lupa migrate saat mau runserver, keluarnya Operational Error !!
+
+![Screenshot 2024-09-16 204822](https://github.com/user-attachments/assets/02cdc4ac-95ed-47b4-a553-16666c0e926d)
+![Screenshot 2024-09-16 201941](https://github.com/user-attachments/assets/503d245e-2ceb-46ec-b746-896709705e9e)
+![Screenshot 2024-09-16 201958](https://github.com/user-attachments/assets/9dc33236-2583-436a-9186-0843172b8427)
+![Screenshot 2024-09-16 204656](https://github.com/user-attachments/assets/68c9d9af-f431-45fe-a3e7-9f2b9c4a54d1)
