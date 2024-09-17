@@ -64,3 +64,29 @@ Django sering dipilih sebagai framework awal untuk belajar pengembangan perangka
 
 Mengapa model pada Django disebut sebagai ORM?
 Model pada Django disebut ORM (Object-Relational Mapping) karena berfungsi sebagai penghubung antara objek Python dan tabel dalam database. Dengan ORM, developer bisa berinteraksi dengan database hanya menggunakan kode Python, tanpa harus menulis query SQL. Django otomatis mengubah objek Python menjadi query SQL dan sebaliknya. Keuntungan ORM adalah pengembang tidak perlu mempelajari SQL secara mendalam, dapat menggunakan berbagai jenis database dengan mudah, serta lebih aman karena ORM membantu mencegah serangan seperti SQL Injection.
+
+
+Tugas Individu 3
+1. Mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+Data delivery diperlukan untuk memastikan data yang dikirimkan dan diterima antara berbagai komponen dalam platform dapat diakses dengan cepat dan akurat. Ini penting untuk menjaga integritas data, efisiensi dalam komunikasi antar sistem, dan mendukung pengalaman pengguna yang lancar.
+
+2. Mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
+JSON lebih baik daripada XML dalam hal kesederhanaan dan efisiensi. JSON menggunakan format yang lebih ringkas, lebih mudah dibaca manusia, dan lebih cepat diproses oleh mesin. JSON populer karena strukturnya lebih sederhana, cocok untuk pertukaran data yang ringan seperti API modern, sementara XML lebih berat dan sering digunakan untuk kasus yang lebih kompleks atau memerlukan validasi skema yang ketat.
+
+3. Fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkannya?
+Method is_valid() pada form Django digunakan untuk memeriksa apakah data yang diinputkan ke dalam form memenuhi syarat validasi yang telah ditentukan. Method ini penting karena memastikan bahwa data yang diterima aplikasi adalah benar dan aman sebelum diproses lebih lanjut, seperti menyimpannya ke dalam database.
+
+4. Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django?
+csrf_token dibutuhkan untuk melindungi aplikasi dari serangan CSRF (Cross-Site Request Forgery), di mana penyerang dapat membuat permintaan berbahaya yang tampak sah dari pengguna yang sudah login. Jika kita tidak menambahkan csrf_token, penyerang dapat memanfaatkan celah ini untuk mengirim permintaan palsu atas nama pengguna tanpa izin mereka, seperti mengubah data atau melakukan tindakan sensitif lainnya di platform.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+Membuat Input Form untuk Menambahkan Objek Model
+Pertama, buat form menggunakan ModelForm yang berdasarkan model yang ingin ditambahkan. Setelah form dibuat, tambahkan view untuk menampilkan form ini dan meng-handle input dari user. Buat template HTML sederhana untuk menampilkan form di frontend. Di view, pastikan form dapat menambahkan objek baru ke database saat data valid dikirimkan oleh user.
+
+Menambahkan 4 Fungsi Views untuk Format XML dan JSON
+Buat empat views baru di mana dua view untuk menampilkan semua objek dalam format XML dan JSON, dan dua view lainnya untuk menampilkan objek berdasarkan ID-nya. Gunakan serialisasi data di Django untuk mengubah objek ke dalam format XML dan JSON. Untuk menampilkan objek berdasarkan ID, tambahkan logika query yang memfilter objek sesuai ID yang diberikan.
+
+Membuat Routing URL untuk Setiap Views
+Tambahkan URL routing untuk masing-masing view di file urls.py. Buat empat endpoint terpisah, misalnya /products/xml/, /products/json/, /products/xml/<id>/, dan /products/json/<id>/, sehingga setiap view bisa diakses melalui URL yang sesuai.
+
+Jangan lupa untuk selalu migrate, setiap melakukan perubahan di models.py karena kmrn pas saya mengganti nama kelas dari Product menjadi productEntry dan lupa migrate saat mau runserver, keluarnya Operational Error !!
