@@ -90,3 +90,53 @@ Membuat Routing URL untuk Setiap Views
 Tambahkan URL routing untuk masing-masing view di file urls.py. Buat empat endpoint terpisah, misalnya /products/xml/, /products/json/, /products/xml/<id>/, dan /products/json/<id>/, sehingga setiap view bisa diakses melalui URL yang sesuai.
 
 Jangan lupa untuk selalu migrate, setiap melakukan perubahan di models.py karena kmrn pas saya mengganti nama kelas dari Product menjadi productEntry dan lupa migrate saat mau runserver, keluarnya Operational Error !!
+
+
+Tugas Individu 4
+1. **Apa itu Django UserCreationForm?**
+   **Django UserCreationForm** adalah formulir bawaan Django yang memudahkan pembuatan pengguna baru. Ini adalah bagian dari `django.contrib.auth.forms`, yang menyediakan validasi otomatis dan perlindungan terhadap input berbahaya. Formulir ini biasanya digunakan untuk pendaftaran pengguna.
+
+   **Kelebihan:**
+   - **Praktis dan cepat**: Formulir sudah disediakan oleh Django sehingga menghemat waktu pengembangan.
+   - **Keamanan terjamin**: Django sudah menangani validasi password dan sanitasi input secara otomatis, membantu mencegah serangan injeksi dan keamanan lainnya.
+   - **Mudah dikustomisasi**: Anda bisa menambahkan field tambahan atau mengubah validasi jika diperlukan.
+
+   **Kekurangan:**
+   - **Keterbatasan bawaan**: Hanya menangani pembuatan pengguna sederhana. Untuk fitur yang lebih kompleks (seperti email verification atau custom password policies), perlu tambahan logika.
+   - **Kurang fleksibel**: Kustomisasi lebih mendalam membutuhkan modifikasi tambahan pada class atau form kustom.
+
+2. **Perbedaan antara Autentikasi dan Otorisasi dalam Konteks Django**
+   - **Autentikasi** (authentication) adalah proses memverifikasi identitas pengguna. Misalnya, ketika seorang pengguna memasukkan username dan password, sistem memastikan bahwa informasi yang diberikan cocok dengan yang tersimpan dalam database.
+   - **Otorisasi** (authorization) adalah proses menentukan hak akses pengguna setelah berhasil diautentikasi. Ini memastikan bahwa pengguna hanya dapat mengakses sumber daya atau fitur yang diizinkan sesuai dengan peran mereka.
+
+   **Pentingnya Autentikasi dan Otorisasi:**
+   - **Keamanan**: Autentikasi memastikan bahwa hanya pengguna terverifikasi yang dapat masuk ke sistem. Otorisasi memastikan bahwa pengguna hanya dapat mengakses data atau fungsi yang relevan dengan peran mereka.
+   - **Manajemen Hak Akses**: Dalam aplikasi yang kompleks, otorisasi membantu menjaga akses data sensitif hanya kepada pengguna yang berhak, seperti admin atau pengguna dengan peran tertentu.
+
+3. **Apa itu Cookies dalam Konteks Aplikasi Web?**
+   **Cookies** adalah data kecil yang disimpan oleh browser di perangkat pengguna untuk menyimpan informasi sementara. Dalam konteks aplikasi web, cookies sering digunakan untuk mengingat preferensi pengguna, status login, atau data sesi pengguna.
+
+   **Bagaimana Django Menggunakan Cookies untuk Mengelola Data Sesi Pengguna:**
+   Django menggunakan cookies untuk menyimpan session ID pengguna. Ketika pengguna masuk, Django menyimpan session ID dalam cookie dan menggunakan ID ini untuk mencocokkan data sesi di server. Dengan cara ini, server dapat mengenali pengguna yang sudah diautentikasi saat mereka melakukan permintaan lebih lanjut, seperti mengakses halaman dashboard setelah login.
+
+4. **Apakah Penggunaan Cookies Aman Secara Default dalam Pengembangan Web?**
+   Penggunaan cookies **tidak sepenuhnya aman secara default**, meskipun Django memberikan langkah-langkah keamanan untuk melindungi cookies.
+
+   **Risiko Potensial:**
+   - **Session Hijacking**: Jika cookie tidak dilindungi dengan baik, peretas bisa mencuri cookie pengguna dan mendapatkan akses tidak sah ke sesi pengguna.
+   - **Cross-Site Scripting (XSS)**: Jika situs web rentan terhadap XSS, penyerang bisa memasukkan skrip berbahaya untuk mencuri cookies pengguna.
+
+   **Langkah Keamanan dalam Django:**
+   - **`HttpOnly`**: Menandai cookies dengan flag `HttpOnly` untuk mencegah akses melalui JavaScript.
+   - **`Secure`**: Menggunakan flag `Secure` untuk memastikan cookies hanya dikirim melalui koneksi HTTPS.
+   - **`CSRF` (Cross-Site Request Forgery)**: Django memiliki perlindungan CSRF untuk mencegah penggunaan cookie sesi secara tidak sah di aplikasi pihak ketiga.
+
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+1. **Registrasi, Login, dan Logout**: Implementasikan formulir registrasi dengan menggunakan `UserCreationForm`, autentikasi pengguna saat login dengan `AuthenticationForm`, dan gunakan fungsi `logout()` untuk menghapus sesi pengguna saat logout.
+
+2. **Dummy Data**: Buat dua akun pengguna di lokal dengan menambahkan tiga data dummy untuk setiap akun, misalnya melalui admin panel atau menggunakan ORM di Django.
+
+3. **Menghubungkan Model Product dengan User**: Tambahkan relasi `ForeignKey` pada model `Product` untuk menghubungkannya dengan model `User`, sehingga setiap produk terkait dengan pemiliknya.
+
+4. **Menampilkan Detail Pengguna Logged In**: Tampilkan detail pengguna yang sedang login, seperti username, di halaman utama menggunakan `request.user`, dan simpan informasi `last_login` di cookies untuk ditampilkan di halaman utama.
