@@ -1,48 +1,141 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+<title>Belanja Belinji</title>
+<style>
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+
+  .hover-scale {
+    transition: transform 0.5s ease-in-out;
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  /* Theme colors */
+  .bg-soft-yellow {
+    background-color: #F9EBAE; /* Soft Yellow */
+  }
+
+  .bg-dark-green {
+    background-color: #2F4F2F; /* Dark Green */
+  }
+
+  .hover\:bg-dark-green:hover {
+    background-color: #3F5B3F; /* Slightly Lighter Dark Green on Hover */
+  }
+
+  .text-dark-green {
+    color: #2F4F2F; /* Dark Green Text */
+  }
+
+  /* Card styles */
+  .info-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners */
+    background-color: #FFF8DC; /* Light Cream Background */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    margin: 10px; /* Margin to prevent overlap */
+    text-align: center; /* Centered text */
+  }
+
+  .info-card:hover {
+    background-color: #FFA07A; /* Light Salmon on hover */
+    color: white; /* Change text color to white on hover */
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Tagline styles */
+  .tagline {
+    font-family: 'Comic Sans MS', cursive; /* Playful font */
+    font-size: 1.25rem; /* Moderate size */
+    color: #2F4F2F; /* Dark Green */
+    text-align: center; /* Centered text */
+    margin-bottom: 20px; /* Space below the tagline */
+  }
+
+  /* Utility classes */
+  .min-h-screen {
+    min-height: 100vh;
+  }
+
+  /* Media queries for responsive grid */
+  @media (min-width: 768px) {
+    .grid-cols-1 {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+
+    .md\:grid-cols-3 {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+</style>
+{% endblock meta %}
+
 {% block content %}
-<h1>Belanja Belinji</h1>
+{% include 'navbar.html' %}
 
-<h5>NPM: </h5>
-<p>{{ npm }}<p>
+<div class="overflow-x-hidden px-4 md:px-8 pb-8 pt-24 min-h-screen bg-yellow-50 flex flex-col animate-fadeIn">
+  <div class="p-2 mb-6 relative">
+    <!-- Tagline added here -->
+    <h1 class="tagline">Shop Smart, Live Happy</h1>
 
-<h5>Name:</h5>
-<p>{{ name }}</p>
+    <div class="relative grid grid-cols-1 z-30 md:grid-cols-3 gap-8 mb-6">
+      <div class="info-card hover-scale">
+        <h2 class="font-semibold">NPM</h2>
+        <p class="text-lg">{{ npm }}</p>
+      </div>
+      <div class="info-card hover-scale">
+        <h2 class="font-semibold">Name</h2>
+        <p class="text-lg">{{ name }}</p>
+      </div>
+      <div class="info-card hover-scale">
+        <h2 class="font-semibold">Class</h2>
+        <p class="text-lg">{{ class }}</p>
+      </div>
+    </div>
+  </div>
 
-<h5>Class:</h5>
-<p>{{ class }}</p>
+  <div class="px-3 mb-4">
+    <div class="flex rounded-md items-center bg-soft-yellow py-2 px-4 w-fit">
+      <h1 class="text-dark-green text-center font-semibold">Last Login: {{ last_login }}</h1>
+    </div>
+  </div>
 
-<h5>Sesi terakhir login: {{ last_login }}</h5>
+  <div class="flex justify-end mb-6">
+    <a href="{% url 'main:create_product_entry' %}" class="bg-yellow-500 hover:bg-dark-green text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+      Add New Product Entry
+    </a>
+  </div>
 
-{% if not product_entries %}
-<p>Belum ada data product pada belanja belinji.</p>
-{% else %}
-<table>
-  <tr>
-    <th>Product Name</th>
-    <th>Price</th>
-    <th>Description</th>
-    <th>Quantity</th>
-  </tr>
-
-  {% comment %} Berikut cara memperlihatkan data mood di bawah baris ini 
-  {% endcomment %}
-  {% for product_entry in product_entries %}
-  <tr>
-    <td>{{product_entry.name}}</td>
-    <td>{{product_entry.price}}</td>
-    <td>{{product_entry.description}}</td>
-    <td>{{product_entry.quantity}}</td>
-  </tr>
-  {% endfor %}
-</table>
-{% endif %}
-
-<br />
-
-<a href="{% url 'main:create_product_entry' %}">
-  <button>Add New Product Entry</button>
-  <a href="{% url 'main:logout' %}">
-    <button>Logout</button>
-  </a>
-</a>
+  {% if not product_entries %}
+  <div class="flex flex-col items-center justify-center min-h-[24rem] p-6">
+    <img src="{% static 'image/logo-paket.png' %}" alt="logo" class="w-32 h-32 mb-4 animate-fadeIn"/>
+    <p class="text-center text-gray-700 mt-4">Belum ada data produk pada belanja belinji.</p>
+  </div>
+  {% else %}
+  <div class="flex flex-wrap justify-center gap-6">
+    {% for product_entry in product_entries %}
+      <div class="card hover-scale">
+        {% include 'card_product.html' with product_entry=product_entry %}
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
 {% endblock content %}

@@ -140,3 +140,19 @@ Tugas Individu 4
 3. **Menghubungkan Model Product dengan User**: Tambahkan relasi `ForeignKey` pada model `Product` untuk menghubungkannya dengan model `User`, sehingga setiap produk terkait dengan pemiliknya.
 
 4. **Menampilkan Detail Pengguna Logged In**: Tampilkan detail pengguna yang sedang login, seperti username, di halaman utama menggunakan `request.user`, dan simpan informasi `last_login` di cookies untuk ditampilkan di halaman utama.
+
+
+### 1. Urutan Prioritas CSS Selector
+Urutan prioritas CSS selector, yang dikenal sebagai "specificity," ditentukan berdasarkan beberapa kriteria. Pertama, inline styles memiliki prioritas tertinggi karena diterapkan langsung ke elemen HTML. Selanjutnya, selector ID (dengan tanda `#`) memiliki prioritas lebih tinggi daripada class selectors (dengan tanda `.`) dan pseudo-classes. Setelah itu, class selectors memiliki prioritas lebih tinggi daripada tag selectors, yang merupakan selector dengan nama tag HTML. Terakhir, universal selector (`*`) memiliki prioritas terendah dan akan ditimpa oleh semua jenis selector di atas.
+
+### 2. Pentingnya Responsive Design
+Responsive design adalah konsep penting dalam pengembangan aplikasi web karena memastikan tampilan dan fungsionalitas situs web yang optimal di berbagai perangkat dan ukuran layar, mulai dari desktop hingga ponsel pintar. Dengan menggunakan teknik seperti media queries, fleksibel grid layouts, dan gambar responsif, pengguna mendapatkan pengalaman yang lebih baik tanpa perlu menggulir secara horizontal atau memperbesar tampilan. Contoh aplikasi yang sudah menerapkan responsive design adalah Facebook, yang menyesuaikan tampilan antarmukanya sesuai perangkat yang digunakan, sedangkan aplikasi seperti situs web berita tertentu mungkin masih memiliki desain yang tidak responsif dan memerlukan pengguliran horizontal pada perangkat mobile.
+
+### 3. Perbedaan Margin, Border, dan Padding
+Margin, border, dan padding adalah tiga konsep dasar dalam CSS yang mempengaruhi ruang dan penempatan elemen. Margin adalah ruang di luar batas elemen yang memisahkannya dari elemen lain, border adalah garis yang mengelilingi elemen dan dapat memiliki warna dan gaya, sedangkan padding adalah ruang di dalam elemen, antara konten dan border. Untuk mengimplementasikannya, Anda dapat menggunakan properti CSS `margin`, `border`, dan `padding` dengan nilai yang sesuai untuk setiap elemen, misalnya `margin: 10px;`, `border: 1px solid black;`, dan `padding: 5px;`.
+
+### 4. Konsep Flexbox dan Grid Layout
+Flexbox dan Grid Layout adalah dua metode yang digunakan dalam CSS untuk mendesain layout web. Flexbox dirancang untuk menata elemen dalam satu dimensi, baik secara horizontal maupun vertikal, dengan memberikan kontrol yang lebih besar terhadap ruang dan penempatan elemen dalam kontainer flex. Di sisi lain, Grid Layout memungkinkan pengaturan elemen dalam dua dimensi (baris dan kolom), memberikan fleksibilitas yang lebih besar untuk menciptakan tata letak kompleks. Keduanya berguna untuk membangun antarmuka pengguna yang responsif dan terstruktur dengan baik, dengan memudahkan penyelarasan, distribusi ruang, dan pengaturan elemen.
+
+### 5. Implementasi Checklist
+Untuk mengimplementasikan checklist di atas secara step-by-step, pertama, saya akan mempelajari setiap konsep dengan membaca dokumentasi resmi CSS dan tutorial online. Setelah memahami dasar-dasar, saya akan membuat proyek sederhana untuk menerapkan urutan prioritas CSS dengan menulis beberapa contoh selector dan menguji bagaimana mereka berinteraksi di browser. Selanjutnya, saya akan merancang layout responsif dengan menggunakan media queries, flexbox, dan grid layout pada proyek tersebut. Saya juga akan bereksperimen dengan margin, border, dan padding pada elemen-elemen dalam proyek untuk melihat dampaknya terhadap layout. Terakhir, saya akan mereview dan menguji proyek di berbagai perangkat dan ukuran layar untuk memastikan responsivitasnya.
