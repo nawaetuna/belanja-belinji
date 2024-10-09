@@ -13,3 +13,5 @@ class ProductEntry(models.Model):
     @property
     def __str__(self):
         return self.name
+    
+

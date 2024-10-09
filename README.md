@@ -156,3 +156,36 @@ Flexbox dan Grid Layout adalah dua metode yang digunakan dalam CSS untuk mendesa
 
 ### 5. Implementasi Checklist
 Untuk mengimplementasikan checklist di atas secara step-by-step, pertama, saya akan mempelajari setiap konsep dengan membaca dokumentasi resmi CSS dan tutorial online. Setelah memahami dasar-dasar, saya akan membuat proyek sederhana untuk menerapkan urutan prioritas CSS dengan menulis beberapa contoh selector dan menguji bagaimana mereka berinteraksi di browser. Selanjutnya, saya akan merancang layout responsif dengan menggunakan media queries, flexbox, dan grid layout pada proyek tersebut. Saya juga akan bereksperimen dengan margin, border, dan padding pada elemen-elemen dalam proyek untuk melihat dampaknya terhadap layout. Terakhir, saya akan mereview dan menguji proyek di berbagai perangkat dan ukuran layar untuk memastikan responsivitasnya.
+
+
+README TUGAS INDIVIDU 6
+
+### 1. **Manfaat Penggunaan JavaScript dalam Pengembangan Aplikasi Web**
+   JavaScript memberikan kemampuan untuk membuat halaman web yang interaktif dan dinamis. Manfaat utamanya antara lain:
+   - **Asynchronous Operations**: Dengan JavaScript, kita bisa menggunakan AJAX untuk melakukan permintaan ke server tanpa perlu me-reload halaman, sehingga meningkatkan pengalaman pengguna.
+   - **Client-Side Validation**: JavaScript dapat digunakan untuk memvalidasi input pengguna sebelum data dikirim ke server, mengurangi beban pada server.
+   - **Interactivity**: JavaScript memungkinkan manipulasi elemen DOM untuk membuat UI yang responsif dan interaktif, seperti dropdown menus, modal windows, sliders, dan lain-lain.
+   - **Improved User Experience**: Dengan interaksi instan, seperti auto-suggestions dan form validation, JavaScript dapat membuat aplikasi web terasa lebih responsif dan cepat.
+
+### 2. **Fungsi `await` pada `fetch()`**
+   Fungsi `await` digunakan untuk menunggu hasil dari sebuah Promise, termasuk `fetch()`, yang mengembalikan Promise saat melakukan request HTTP. `await` membuat JavaScript "menunggu" hingga fetch selesai dan memberikan respon sebelum melanjutkan eksekusi kode berikutnya.
+   
+   **Tanpa `await`,** kode akan langsung melanjutkan eksekusi tanpa menunggu hasil dari `fetch()`, sehingga kita tidak akan bisa bekerja dengan data yang diterima dari server jika proses asynchronous belum selesai. Ini bisa menyebabkan error karena data yang diharapkan mungkin belum tersedia.
+
+### 3. **Mengapa Perlu `csrf_exempt` untuk AJAX POST**
+   Decorator `csrf_exempt` digunakan untuk menonaktifkan mekanisme Cross-Site Request Forgery (CSRF) protection di Django pada view tertentu, khususnya untuk request AJAX POST. AJAX POST request mungkin tidak membawa token CSRF secara default, sehingga Django akan memblokirnya tanpa `csrf_exempt`. Namun, untuk menjaga keamanan, pastikan hanya menonaktifkan CSRF untuk endpoint yang aman atau pastikan token CSRF dikirim dalam header AJAX.
+
+### 4. **Mengapa Pembersihan Data Input Pengguna Dilakukan di Backend**
+   Pembersihan data di backend sangat penting karena:
+   - **Keamanan**: Data yang masuk ke server bisa saja dimanipulasi oleh pengguna yang tidak bertanggung jawab. Pembersihan data di backend memastikan bahwa input yang masuk ke server benar-benar sesuai dan aman, menghindari potensi serangan seperti SQL injection atau XSS (Cross-site Scripting).
+   - **Integritas Data**: Validasi di backend menjaga bahwa data yang disimpan dalam basis data memiliki format yang benar dan sesuai aturan, meskipun validasi front-end diabaikan atau diubah oleh pengguna.
+   - **Redundansi**: Meskipun validasi frontend bisa dilakukan untuk meningkatkan pengalaman pengguna, validasi backend tetap wajib karena frontend validation dapat di-bypass oleh pengguna berpengalaman.
+
+### 5. **Implementasi Checklist Step-by-Step**
+   - **AJAX GET**: Saya menambahkan view baru yang menggunakan Django's `JsonResponse` untuk mengirim data mood pengguna yang sedang login. JavaScript di frontend kemudian melakukan request GET menggunakan `fetch()` untuk mengambil data ini dan memperbarui tampilan halaman tanpa reload.
+   
+   - **AJAX POST**: Saya membuat modal dengan form untuk menambahkan mood, yang terhubung dengan endpoint POST di server. Tombol untuk membuka modal diatur di halaman utama, dan saat submit berhasil, saya menggunakan `JavaScript` untuk menutup modal dan membersihkan input form. Jika terjadi error, error message akan ditampilkan pada modal tanpa perlu reload halaman.
+
+   - **Path & View**: Saya membuat URL `/create-ajax/` di `urls.py` yang terhubung dengan fungsi view baru di `views.py` untuk menangani POST request mood baru. Form di modal mengirimkan data ke path tersebut secara asynchronous menggunakan `fetch()` POST request.
+
+   - **Refresh Asynchronous**: Setelah mood berhasil ditambahkan, saya menggunakan JavaScript untuk memuat ulang daftar mood secara asynchronous, sehingga mood terbaru ditampilkan tanpa reload seluruh halaman.
